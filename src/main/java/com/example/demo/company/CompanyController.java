@@ -1,6 +1,5 @@
 package com.example.demo.company;
 
-import com.example.demo.country.Country;
 import com.example.demo.country.CountryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
