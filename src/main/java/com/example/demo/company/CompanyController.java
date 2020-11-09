@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/companies")
@@ -39,6 +40,6 @@ public class CompanyController {
     public ResponseEntity<Void> creatCompany(@Valid @RequestBody CompanyDTO companyDTO) {
         companyRepository.save(companyDTO.toModel(countryRepository));
 
-        return (ResponseEntity) ResponseEntity.status(HttpStatus.CREATED);
+        return ResponseEntity.created(URI.create("OK")).build();
     }
 }

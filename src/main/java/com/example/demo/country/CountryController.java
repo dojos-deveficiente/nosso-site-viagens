@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/countries")
@@ -22,6 +23,6 @@ public class CountryController {
     @PostMapping
     public ResponseEntity<Void> createCountries(@Valid @RequestBody CountryDTO countryDTO) {
         countryRepository.save(countryDTO.toModel());
-        return (ResponseEntity) ResponseEntity.status(HttpStatus.CREATED);
+        return ResponseEntity.created(URI.create("ok")).build();
     }
 }
