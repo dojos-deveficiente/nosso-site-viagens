@@ -5,7 +5,13 @@ import com.example.demo.country.Country;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Company {
+
+    @Deprecated
+    public Company() {
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

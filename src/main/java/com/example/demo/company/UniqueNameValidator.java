@@ -1,8 +1,10 @@
 package com.example.demo.company;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@Component
 public class UniqueNameValidator implements Validator {
 
     private CompanyRepository companyRepository;
@@ -18,9 +20,12 @@ public class UniqueNameValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
+        if (errors.hasErrors()) {
+            return;
+        }
         boolean exists = companyRepository.existsByName(((CompanyDTO)o).getNome());
         if (exists) {
-            throw new RuntimeException("Nome da companhia já existe");
+            errors.rejectValue(((CompanyDTO)o).getNome(), null, "Nome da companhia já existe");
         }
     }
 }
