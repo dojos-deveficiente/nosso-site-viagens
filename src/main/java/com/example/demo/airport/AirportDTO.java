@@ -14,6 +14,11 @@ public class AirportDTO {
     @NotNull
     private Long countryId;
 
+    public AirportDTO(@NotBlank String name, @NotNull Long countryId) {
+        this.name = name;
+        this.countryId = countryId;
+    }
+
     public Airport toModel (EntityManager em) {
     	Country country = em.find(Country.class, this.countryId);
     	return new Airport(name, country);

@@ -1,12 +1,11 @@
 package com.example.demo.airport;
 
 import javax.persistence.EntityManager;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/airports")
@@ -21,7 +20,7 @@ public class AirportController {
 	}
 
     @PostMapping
-    public ResponseEntity<Void> add (AirportDTO airportDTO) {
+    public ResponseEntity<Void> add (@Valid @RequestBody AirportDTO airportDTO) {
         airportRepository.save(airportDTO.toModel(em));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
