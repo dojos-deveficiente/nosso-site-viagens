@@ -3,6 +3,7 @@ package com.example.demo.airport;
 import com.example.demo.country.Country;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Airport {
@@ -22,19 +23,9 @@ public class Airport {
 
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Airport(@NotBlank String name, Country country) {
+		this.name = name;
+		this.country = country;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
 }

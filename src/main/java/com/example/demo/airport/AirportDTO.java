@@ -1,7 +1,10 @@
 package com.example.demo.airport;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.country.Country;
 
 public class AirportDTO {
 
@@ -9,9 +12,10 @@ public class AirportDTO {
     private String name;
 
     @NotNull
-    private Long countrId;
+    private Long countryId;
 
-    public Airport toModel () {
-
+    public Airport toModel (EntityManager em) {
+    	Country country = em.find(Country.class, this.countryId);
+    	return new Airport(name, country);
     }
 }
