@@ -14,6 +14,10 @@ public class AirportDTO {
     @NotNull
     private Long countryId;
 
+    public String getName() {
+        return name;
+    }
+
     public AirportDTO(@NotBlank String name, @NotNull Long countryId) {
         this.name = name;
         this.countryId = countryId;
