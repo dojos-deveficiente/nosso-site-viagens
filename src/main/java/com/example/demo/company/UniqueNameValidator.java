@@ -25,7 +25,7 @@ public class UniqueNameValidator implements Validator {
         }
         boolean exists = companyRepository.existsByName(((CompanyDTO)o).getNome());
         if (exists) {
-            errors.rejectValue(((CompanyDTO)o).getNome(), null, "Nome da companhia já existe");
+            errors.rejectValue("nome", null, "Nome da companhia já existe");
         }
     }
 }
