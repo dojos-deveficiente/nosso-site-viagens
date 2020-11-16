@@ -2,6 +2,7 @@ package com.example.demo.rota;
 
 import javax.validation.Valid;
 
+import com.example.demo.airport.AirportRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +16,11 @@ public class RotaController {
 	
 	
 	private RotaRepository rotaRepository;
+	private AirportRepository airportRepository;
 
-	public RotaController(RotaRepository rotaRepository) {
+	public RotaController(RotaRepository rotaRepository, AirportRepository airportRepository) {
 		this.rotaRepository = rotaRepository;
+		this.airportRepository =airportRepository;
 	}
 
 	@PostMapping
@@ -25,7 +28,7 @@ public class RotaController {
 		System.out.println(rotaDTO);
 		
 		
-		this.rotaRepository.save(rotaDTO.toDomain());
+		this.rotaRepository.save(rotaDTO.toDomain(airportRepository));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
