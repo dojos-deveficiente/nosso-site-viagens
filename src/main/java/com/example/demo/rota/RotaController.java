@@ -26,10 +26,8 @@ public class RotaController {
 	@PostMapping
 	public ResponseEntity<Void> cadastra(@RequestBody @Valid RotaDTO rotaDTO){
 		System.out.println(rotaDTO);
-		
-		
-		this.rotaRepository.save(rotaDTO.toDomain(airportRepository));
-		
+		Rota rotaCriada = this.rotaRepository.save(rotaDTO.toDomain(airportRepository));
+		System.out.println(rotaCriada);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 }

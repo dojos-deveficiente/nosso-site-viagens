@@ -28,4 +28,8 @@ public class Airport {
 		this.country = country;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 }

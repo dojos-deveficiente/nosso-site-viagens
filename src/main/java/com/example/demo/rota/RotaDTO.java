@@ -3,6 +3,8 @@ package com.example.demo.rota;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import org.springframework.util.StringUtils;
+
 import com.example.demo.airport.Airport;
 import com.example.demo.airport.AirportRepository;
 
@@ -41,7 +43,11 @@ public class RotaDTO {
                 .orElseThrow(IllegalArgumentException::new);
         final Airport aeroportoDestino = airportRepository.findById(aeroportoDestinoId)
                 .orElseThrow(IllegalArgumentException::new);
-        return new Rota(this.nome, aeroportoOrigem, aeroportoDestino, this.duracao);
+        Rota rota = new Rota(aeroportoOrigem, aeroportoDestino, this.duracao);
+        if(StringUtils.hasText(this.nome)) {
+        	rota.setNome(this.nome);
+        }
+        return rota;
     }
 
 }
