@@ -50,4 +50,7 @@ public class RotaDTO {
         return rota;
     }
 
+    public boolean temOrigemEDestinoIgual() {
+        return this.aeroportoDestinoId.equals(this.aeroportoOrigemId);
+    }
 }

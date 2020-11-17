@@ -24,15 +24,13 @@ public class Rota {
 	private Airport airportDestino;
 	private @Positive int duracao;
 
+
+
 	public Rota(Airport origem, Airport destino, @Positive int duracao) {
 		this.airportOrigem = origem;
 		this.airportDestino = destino;
 		this.duracao = duracao;
 		this.nome = origem.getName() + " - " + destino.getName();
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	@Override

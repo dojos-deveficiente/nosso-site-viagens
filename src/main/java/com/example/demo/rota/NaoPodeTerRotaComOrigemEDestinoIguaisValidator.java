@@ -16,7 +16,7 @@ public class NaoPodeTerRotaComOrigemEDestinoIguaisValidator implements Validator
         }
         RotaDTO rotaDTO = (RotaDTO) target;
         if(rotaDTO.temOrigemEDestinoIgual()){
-
+            errors.reject(null,"aeroporto de destino e origem precisam ser diferentes" );
         }
     }
 }
