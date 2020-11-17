@@ -5,18 +5,22 @@ import javax.validation.Valid;
 import com.example.demo.airport.AirportRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rotas")
 public class RotaController {
-	
+
+
 	
 	private RotaRepository rotaRepository;
 	private AirportRepository airportRepository;
+
+	@InitBinder
+	public void init(WebDataBinder binder){
+		binder.addValidators(new NaoPodeTerRotaComOrigemEDestinoIguaisValidator());
+	}
 
 	public RotaController(RotaRepository rotaRepository, AirportRepository airportRepository) {
 		this.rotaRepository = rotaRepository;
