@@ -43,9 +43,11 @@ public class RotaDTO {
                 .orElseThrow(IllegalArgumentException::new);
         final Airport aeroportoDestino = airportRepository.findById(aeroportoDestinoId)
                 .orElseThrow(IllegalArgumentException::new);
-        Rota rota = new Rota(aeroportoOrigem, aeroportoDestino, this.duracao);
+        Rota rota;
         if(StringUtils.hasText(this.nome)) {
-        	rota.setNome(this.nome);
+            rota = new Rota(aeroportoOrigem, aeroportoDestino, this.duracao);
+        } else {
+            rota = new Rota(nome, aeroportoOrigem, aeroportoDestino, this.duracao);
         }
         return rota;
     }

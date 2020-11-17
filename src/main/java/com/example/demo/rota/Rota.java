@@ -1,6 +1,7 @@
 package com.example.demo.rota;
 
 import com.example.demo.airport.Airport;
+import org.springframework.util.Assert;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,15 @@ public class Rota {
 		this.airportDestino = destino;
 		this.duracao = duracao;
 		this.nome = origem.getName() + " - " + destino.getName();
+	}
+
+	public Rota(String nome, Airport aeroportoOrigem, Airport aeroportoDestino, int duracao) {
+		Assert.hasLength(nome, "Nome nao pode ser vazio :(");
+
+		this.nome = nome;
+		this.airportOrigem = aeroportoOrigem;
+		this.airportDestino = aeroportoDestino;
+		this.duracao = duracao;
 	}
 
 	@Override

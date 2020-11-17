@@ -19,7 +19,7 @@ public class RotaController {
 
 	@InitBinder
 	public void init(WebDataBinder binder){
-		binder.addValidators(new NaoPodeTerRotaComOrigemEDestinoIguaisValidator());
+		binder.addValidators(new NaoPodeTerRotaComOrigemEDestinoIguaisValidator(rotaRepository));
 	}
 
 	public RotaController(RotaRepository rotaRepository, AirportRepository airportRepository) {
