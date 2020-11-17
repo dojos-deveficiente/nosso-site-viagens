@@ -25,6 +25,10 @@ public class NaoPodeTerRotaComOrigemEDestinoIguaisValidator implements Validator
             errors.reject(null,"aeroporto de destino e origem precisam ser diferentes" );
         }
         
-        rotaRepository.existsAirportOrigemIdAndAirportDestinoId(rotaDTO.getOrigemId(), rotaDTO.get)
+        boolean existe = rotaRepository.existsByAirportOrigem_Id_AndAirportDestino_Id(rotaDTO.getOrigemId(), rotaDTO.getDestinoId());
+        
+        if (existe) {
+        	errors.reject(null, "Já existe uma rota com a mesma origem e destino");
+        }
     }
 }

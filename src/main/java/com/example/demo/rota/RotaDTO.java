@@ -43,16 +43,25 @@ public class RotaDTO {
                 .orElseThrow(IllegalArgumentException::new);
         final Airport aeroportoDestino = airportRepository.findById(aeroportoDestinoId)
                 .orElseThrow(IllegalArgumentException::new);
-        Rota rota;
+
         if(StringUtils.hasText(this.nome)) {
-            rota = new Rota(aeroportoOrigem, aeroportoDestino, this.duracao);
-        } else {
-            rota = new Rota(nome, aeroportoOrigem, aeroportoDestino, this.duracao);
+            return new Rota(aeroportoOrigem, aeroportoDestino, this.duracao);
         }
-        return rota;
+        
+        return new Rota(nome, aeroportoOrigem, aeroportoDestino, this.duracao);
     }
 
     public boolean temOrigemEDestinoIgual() {
         return this.aeroportoDestinoId.equals(this.aeroportoOrigemId);
     }
+
+
+	public Long getOrigemId() {
+		return this.aeroportoOrigemId;
+	}
+
+
+	public Long getDestinoId() {
+		return this.aeroportoDestinoId;
+	}
 }
